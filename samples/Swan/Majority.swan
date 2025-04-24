@@ -1,0 +1,480 @@
+-- version: 2024.0
+function GetMajorityVote <<N>> (votes: 'T ^ N;)
+  returns (candidate: 'T;
+           hasMajority : bool;)
+{
+  diagram
+    (#0 expr forward
+      <<N>> with [x] = votes;
+      diagram
+        (#1 var
+               c: int32 last = 0;)
+        (#16 let
+                activate #VoteCounter
+                if last 'c = 0
+                then
+                  {
+                    diagram
+                      (#17 let m = x; 
+                               c = 1;)
+                  }
+                elsif m = x
+                then
+                  {
+                    diagram
+                      (#18 let c = last 'c + 1;)
+                  }
+                else
+                  {
+                    diagram
+                      (#19 let c = last 'c - 1;)
+                  }
+                ;)
+      returns (m: default = votes[0]))
+    (#6 def candidate)
+    (#7 expr forward
+      <<N>> with [x]=votes;
+      diagram
+        (#2 let
+               activate #CandidateCounter
+               if x = candidate
+               then
+                 {
+                   diagram
+                     (#3 let n = last 'n + 1;)
+                 }
+               else
+                 {
+                 }
+               ;)
+      returns (n: last = 0))
+    (#11 def hasMajority)
+    (#12 block (({op_expr%function n => n * 2 > N%op_expr})))
+    
+    (#13 wire #0 => #6)
+    (#14 wire #7 => #12)
+    (#15 wire #12 => #11)
+}
+
+__END__
+{
+  "ModelTree": {
+    "Children": {
+      "body[0]": {
+        "Children": {
+          "operator[0]": {
+            "Children": {
+              "input[0]": {},
+              "output[0]": {},
+              "output[1]": {},
+              "scope[0]": {
+                "Children": {
+                  "diagram[0]": {
+                    "Children": {
+                      "block_def[1]": {
+                        "Properties": {
+                          "Graph": {
+                            "DisplayedDirection": "NorthEast",
+                            "ContentOrientation": "None",
+                            "Coordinates": {
+                              "X": -308.6875,
+                              "Y": 124.39866666666663
+                            },
+                            "Size": {
+                              "Width": 140.0,
+                              "Height": 32.0
+                            }
+                          }
+                        }
+                      },
+                      "block_def[3]": {
+                        "Properties": {
+                          "Graph": {
+                            "DisplayedDirection": "NorthEast",
+                            "ContentOrientation": "None",
+                            "Coordinates": {
+                              "X": -80.875,
+                              "Y": 621.0
+                            },
+                            "Size": {
+                              "Width": 160.0,
+                              "Height": 32.0
+                            }
+                          }
+                        }
+                      },
+                      "block_expr[0]": {
+                        "Children": {
+                          "scope[0]": {
+                            "Children": {
+                              "diagram[0]": {
+                                "Children": {
+                                  "activate_if[1]": {
+                                    "Children": {
+                                      "activate_branch[0]": {
+                                        "Children": {
+                                          "scope[0]": {
+                                            "Children": {
+                                              "diagram[0]": {
+                                                "Children": {
+                                                  "block_eq[0]": {
+                                                    "Properties": {
+                                                      "Graph": {
+                                                        "DisplayedDirection": "NorthEast",
+                                                        "ContentOrientation": "None",
+                                                        "Coordinates": {
+                                                          "X": -656.5,
+                                                          "Y": 25.30399999999996
+                                                        },
+                                                        "Size": {
+                                                          "Width": 160.0,
+                                                          "Height": 42.18933333333334
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Properties": {
+                                          "Graph": {
+                                            "Coordinates": {
+                                              "X": -656.5,
+                                              "Y": 25.30399999999996
+                                            },
+                                            "Size": {
+                                              "Width": 280.0,
+                                              "Height": 82.18933333333334
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "activate_branch[1]": {
+                                        "Children": {
+                                          "scope[0]": {
+                                            "Children": {
+                                              "diagram[0]": {
+                                                "Children": {
+                                                  "block_eq[0]": {
+                                                    "Properties": {
+                                                      "Graph": {
+                                                        "DisplayedDirection": "NorthEast",
+                                                        "ContentOrientation": "None",
+                                                        "Coordinates": {
+                                                          "X": -656.5,
+                                                          "Y": 144.39866666666663
+                                                        },
+                                                        "Size": {
+                                                          "Width": 240.0,
+                                                          "Height": 32.0
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Properties": {
+                                          "Graph": {
+                                            "Coordinates": {
+                                              "X": -656.5,
+                                              "Y": 144.39866666666663
+                                            },
+                                            "Size": {
+                                              "Width": 280.0,
+                                              "Height": 72.0
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "activate_branch[2]": {
+                                        "Children": {
+                                          "scope[0]": {
+                                            "Children": {
+                                              "diagram[0]": {
+                                                "Children": {
+                                                  "block_eq[0]": {
+                                                    "Properties": {
+                                                      "Graph": {
+                                                        "DisplayedDirection": "NorthEast",
+                                                        "ContentOrientation": "None",
+                                                        "Coordinates": {
+                                                          "X": -656.5,
+                                                          "Y": 258.3986666666666
+                                                        },
+                                                        "Size": {
+                                                          "Width": 240.0,
+                                                          "Height": 32.0
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Properties": {
+                                          "Graph": {
+                                            "Coordinates": {
+                                              "X": -656.5,
+                                              "Y": 258.39866666666666
+                                            },
+                                            "Size": {
+                                              "Width": 280.0,
+                                              "Height": 72.0
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "Properties": {
+                                      "Graph": {
+                                        "Coordinates": {
+                                          "X": -656.5,
+                                          "Y": 123.30399999999997
+                                        },
+                                        "Size": {
+                                          "Width": 310.0,
+                                          "Height": 372.18933333333337
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "var_section[0]": {
+                                    "Children": {
+                                      "var[0]": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Properties": {
+                          "Graph": {
+                            "Coordinates": {
+                              "X": -654.5,
+                              "Y": 121.30399999999997
+                            },
+                            "Size": {
+                              "Width": 396.0,
+                              "Height": 536.1893333333334
+                            }
+                          }
+                        }
+                      },
+                      "block_expr[2]": {
+                        "Children": {
+                          "scope[0]": {
+                            "Children": {
+                              "diagram[0]": {
+                                "Children": {
+                                  "activate_if[0]": {
+                                    "Children": {
+                                      "activate_branch[0]": {
+                                        "Children": {
+                                          "scope[0]": {
+                                            "Children": {
+                                              "diagram[0]": {
+                                                "Children": {
+                                                  "block_eq[0]": {
+                                                    "Properties": {
+                                                      "Graph": {
+                                                        "DisplayedDirection": "NorthEast",
+                                                        "ContentOrientation": "None",
+                                                        "Coordinates": {
+                                                          "X": -656.5,
+                                                          "Y": 584.0
+                                                        },
+                                                        "Size": {
+                                                          "Width": 240.0,
+                                                          "Height": 32.0
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Properties": {
+                                          "Graph": {
+                                            "Coordinates": {
+                                              "X": -656.5,
+                                              "Y": 584.0
+                                            },
+                                            "Size": {
+                                              "Width": 280.0,
+                                              "Height": 72.0
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "activate_branch[1]": {
+                                        "Children": {
+                                          "scope[0]": {
+                                            "Children": {
+                                              "diagram[0]": {
+                                                "Children": {}
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "Properties": {
+                                          "Graph": {
+                                            "Coordinates": {
+                                              "X": -656.5,
+                                              "Y": 694.0
+                                            },
+                                            "Size": {
+                                              "Width": 280.0,
+                                              "Height": 64.0
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "Properties": {
+                                      "Graph": {
+                                        "Coordinates": {
+                                          "X": -656.5,
+                                          "Y": 621.0
+                                        },
+                                        "Size": {
+                                          "Width": 310.0,
+                                          "Height": 240.0
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "Properties": {
+                          "Graph": {
+                            "Coordinates": {
+                              "X": -654.5,
+                              "Y": 619.0
+                            },
+                            "Size": {
+                              "Width": 396.0,
+                              "Height": 404.0
+                            }
+                          }
+                        }
+                      },
+                      "block_inst[4]": {
+                        "Properties": {
+                          "Graph": {
+                            "DisplayedDirection": "NorthEast",
+                            "ContentOrientation": "None",
+                            "Coordinates": {
+                              "X": -308.6875,
+                              "Y": 621.0
+                            },
+                            "Size": {
+                              "Width": 183.0,
+                              "Height": 100.0
+                            }
+                          }
+                        }
+                      },
+                      "wire[5]": {
+                        "Children": {
+                          "source[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -461.5,
+                                  "Y": 124.39866666666663
+                                }
+                              }
+                            }
+                          },
+                          "target[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -363.6875,
+                                  "Y": 124.39866666666663
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "wire[6]": {
+                        "Children": {
+                          "source[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -461.5,
+                                  "Y": 621.0
+                                }
+                              }
+                            }
+                          },
+                          "target[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -395.1875,
+                                  "Y": 621.0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "wire[7]": {
+                        "Children": {
+                          "source[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -222.1875,
+                                  "Y": 621.0
+                                }
+                              }
+                            }
+                          },
+                          "target[0]": {
+                            "Properties": {
+                              "Graph": {
+                                "Coordinates": {
+                                  "X": -145.875,
+                                  "Y": 621.0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Properties": {
+          "Graph": {
+            "Order": 1
+          }
+        }
+      }
+    },
+    "Properties": {
+      "version": "1.0"
+    }
+  }
+}

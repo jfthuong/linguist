@@ -7282,6 +7282,19 @@ Svelte:
   extensions:
   - ".svelte"
   language_id: 928734530
+Swan:
+  type: programming
+  color: "#FFB71B"
+  extensions:
+  - ".swan"
+  - ".swani"
+  - ".swant"
+  - ".sproj"
+  - ".sproj.editor"
+  tm_scope: source.swan
+  ace_mode: swan
+  codemirror_mime_type: text-x-swan
+
 Sway:
   type: programming
   color: "#00F58C"
