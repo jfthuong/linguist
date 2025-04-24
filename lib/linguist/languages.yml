@@ -2786,7 +2786,7 @@ HIP:
   type: programming
   color: "#4F3A4F"
   extensions:
-    - ".hip"
+  - ".hip"
   tm_scope: source.c++
   ace_mode: c_cpp
   codemirror_mode: clike
@@ -7294,7 +7294,7 @@ Swan:
   tm_scope: source.swan
   ace_mode: swan
   codemirror_mime_type: text-x-swan
-
+  language_id: 1033322966
 Sway:
   type: programming
   color: "#00F58C"
